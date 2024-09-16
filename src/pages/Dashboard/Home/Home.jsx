@@ -10,10 +10,11 @@ import HeaderTop from "../../../components/HeaderTop";
 import StaticMusicCard from "../../../components/StaticMusicCard";
 import MusicCar from "../../../components/MusicCard";
 import MusicCard from "../../../components/MusicCard";
+import Playback from "../../../components/Playback";
 
-function Home({ code }) {
+function Home({ accessToken }) {
   const navigate = useNavigate();
-  const accessToken = useAuth(code);
+  // const accessToken = useAuth(code);
   const [topMixesMusic, setTopMixesMusic] = useState([]);
   const [madeForYou, setMadeForYou] = useState([]);
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
@@ -77,15 +78,14 @@ function Home({ code }) {
       }
     ).then((res) => setUniquelyYours(res.data.playlists.items));
   }, [accessToken]);
-  console.log(topMixesMusic);
 
   return (
     <section
       id="home"
-      className="text-white h-screen overflow-y-auto px-[41px]"
+      className="text-white h-screen overflow-y-auto "
     >
       <HeaderTop />
-      <div className="mt-[30px]">
+      <div className="mt-[30px] px-[41px]">
         <h1 className="part-heading mb-[29px]">Good afternoon</h1>
         <div className="grid grid-cols-12 gap-[30px] w-full relative">
           {topMixesMusic.length > 0 ? (
@@ -289,6 +289,7 @@ function Home({ code }) {
           </div>
         </div>
       </div>
+      <Playback accessToken={accessToken}/>
     </section>
   );
 }

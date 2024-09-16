@@ -16,10 +16,10 @@ function Navbar() {
           <HomeIcon />
           <p className="nav-text">Home</p>
         </NavLink>
-        <div className={"flex items-center gap-[20px]"}>
+        <NavLink to={'/search'} className={"flex items-center gap-[20px]"}>
           <SearchIcon />
           <p className="nav-text">Search</p>
-        </div>
+        </NavLink>
         <div className={"flex items-center gap-[20px]"}>
           <LibraryIcon />
           <p className="nav-text">Your Library</p>

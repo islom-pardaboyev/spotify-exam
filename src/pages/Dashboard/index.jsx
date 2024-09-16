@@ -1,5 +1,6 @@
 import Home from './Home/Home'
-import LikedSongs from './LikedSongs'
+import LikedSongs from './LikedPage/LikedSongs'
 import Playlist from './Playlist/Playlist'
+import Search from './SearchPage/Search'
 
-export {Home, LikedSongs, Playlist}
+export {Home, LikedSongs, Playlist, Search}
