@@ -28,14 +28,12 @@ function Playlist() {
       headers: {
         Authorization: "Bearer " + token,
       },
-    })
-      .then((res) => {
-        res.data.tracks.items.forEach((item) => {
-          item.isLiked = false;
-        });
-        setSingePlaylist(res.data);
-      })
-      .catch((err) => console.error("Error fetching playlist data:", err));
+    }).then((res) => {
+      res.data.tracks.items.forEach((item) => {
+        item.isLiked = false;
+      });
+      setSingePlaylist(res.data);
+    });
   }, [id, token]);
 
   return (
