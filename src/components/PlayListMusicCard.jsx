@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaHeart } from "react-icons/fa";
 import { LikeButton } from "../assets/images/Icons";
 import { addArray } from "../store/LikeSlice";
 import { useDispatch } from "react-redux";
+import { Context } from "../context/Context";
 
 function PlayListMusicCard({ index, track }) {
   const [liked, setLiked] = useState(JSON.parse(window.localStorage.getItem(`likedState-${track?.track?.id}`)) || false);
   const dispatch = useDispatch();
+  const {setPlay, setPlaying, play, playing} = useContext(Context)
 
   const handleLike = () => {
     const newLikedState = true;
@@ -17,9 +19,13 @@ function PlayListMusicCard({ index, track }) {
   useEffect(() => {
     window.localStorage.setItem(`likedState-${track?.track?.id}`, JSON.stringify(liked));
   }, [liked, track]);
+  
 
   return (
-    <div
+    <div onClick={() => {
+      setPlay(track?.track?.uri)
+      setPlaying(true)
+    }}
       key={index}
       className="grid grid-cols-12 gap-4 items-center hover:bg-gray-800 p-2 rounded-lg"
     >
@@ -35,8 +41,8 @@ function PlayListMusicCard({ index, track }) {
             alt="Album cover"
           />
           <div>
-            <p className="">{track?.track?.name}</p>
-            <p className="text-xs text-gray-400">
+            <p className="line-clamp-1">{track?.track?.name}</p>
+            <p className="text-xs text-gray-400 line-clamp-1">
               {track?.track?.artists.map((artist) => artist.name).join(", ")}
             </p>
           </div>

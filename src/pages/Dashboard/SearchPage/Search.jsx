@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-node";
 import { CLIENT_ID } from "../../../hook/useEnv";
 import "./style.css";
 import { SearchIcon } from "../../../assets/images/Icons";
 import useDebounce from "../../../hook/useDebounce";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../../context/Context";
 
 function Search({ accessToken }) {
+  const { setPlay, setPlaying, play, playing } = useContext(Context);
   const [playlist, setPlaylist] = useState([]);
   const [tracks, setTracks] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -48,7 +50,6 @@ function Search({ accessToken }) {
         .then((res) => setArtists(res.body.artists.items));
     }
   }, [searchTextDebounce, accessToken, searchText]);
-  console.log(artists);
 
   return (
     <section id="search" className="h-screen overflow-y-auto text-white">
@@ -96,6 +97,10 @@ function Search({ accessToken }) {
             {tracks.length > 0 ? (
               tracks.map((track, index) => (
                 <div
+                  onClick={() => {
+                    setPlay(track?.track?.uri);
+                    setPlaying(true);
+                  }}
                   key={track.id}
                   className="flex justify-between items-center p-2 bg-white/40 rounded-md"
                 >

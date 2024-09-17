@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
 const initialState = {
-  likedArray: [],
+  likedArray: JSON.parse(window.localStorage.getItem('likedArray')) || [],
 };
 
 export const LikeSlice = createSlice({
@@ -21,7 +21,7 @@ export const LikeSlice = createSlice({
           state.likedArray[index].isLiked = true;
           toast.error("Please Login First");
         }
-      } else {
+        window.localStorage.setItem('likedArray', JSON.stringify(state.likedArray))
       }
     },
   },

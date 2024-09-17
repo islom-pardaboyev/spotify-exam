@@ -4,6 +4,7 @@ import DashboardRoutes from './routes/Dashboard'
 
 function App() {
   const code = new URLSearchParams(window.location.search).get("code");
+  
 
   return code ? <DashboardRoutes code={code} /> : <LoginRoutes />;
 }

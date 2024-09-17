@@ -20,7 +20,6 @@ import LikedPLaylistCard from "../../../components/LikedPlaylistCard";
 function LikedList() {
   const likedArray = useSelector((state) => state.likedArray);
   const dispatch = useDispatch(); 
-  console.log(likedArray);
   
 
   return (
