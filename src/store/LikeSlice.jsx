@@ -19,7 +19,7 @@ export const LikeSlice = createSlice({
           toast.success("Music Liked");
         } else {
           state.likedArray[index].isLiked = true;
-          toast.error("Please Login First");
+          toast.error('This Music Already Liked');
         }
         window.localStorage.setItem('likedArray', JSON.stringify(state.likedArray))
       }
