@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { FaHeart } from "react-icons/fa";
-import { LikeButton } from "../assets/images/Icons";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { addArray } from "../store/LikeSlice";
 import { useDispatch } from "react-redux";
 import { Context } from "../context/Context";
 
 function PlayListMusicCard({ index, track }) {
-  const [liked, setLiked] = useState(JSON.parse(window.localStorage.getItem(`likedState-${track?.track?.id}`)) || false);
+  const [liked, setLiked] = useState(
+    JSON.parse(window.localStorage.getItem(`likedState-${track?.track?.id}`)) ||
+      false
+  );
   const dispatch = useDispatch();
-  const {setPlay, setPlaying, play, playing} = useContext(Context)
+  const { setPlay, setPlaying, play, playing } = useContext(Context);
 
   const handleLike = () => {
     const newLikedState = true;
@@ -17,15 +19,18 @@ function PlayListMusicCard({ index, track }) {
   };
 
   useEffect(() => {
-    window.localStorage.setItem(`likedState-${track?.track?.id}`, JSON.stringify(liked));
+    window.localStorage.setItem(
+      `likedState-${track?.track?.id}`,
+      JSON.stringify(liked)
+    );
   }, [liked, track]);
-  
 
   return (
-    <div onClick={() => {
-      setPlay(track?.track?.uri)
-      setPlaying(true)
-    }}
+    <div
+      onClick={() => {
+        setPlaying(true);
+        setPlay(track?.track?.uri);
+      }}
       key={index}
       className="grid grid-cols-12 gap-4 items-center hover:bg-gray-800 p-2 rounded-lg"
     >
@@ -48,7 +53,9 @@ function PlayListMusicCard({ index, track }) {
           </div>
         </div>
       </div>
-      <p className="line-clamp-2 col-span-4 text-primary-5">{track?.track?.album?.name}</p>
+      <p className="line-clamp-2 col-span-4 text-primary-5">
+        {track?.track?.album?.name}
+      </p>
       <div className="flex items-center">
         <p onClick={handleLike}>
           {liked ? (
@@ -56,12 +63,14 @@ function PlayListMusicCard({ index, track }) {
               <FaHeart />
             </button>
           ) : (
-            <button className="scale-[.5] text-green-500">
-              <LikeButton />
+            <button className="mr-2">
+              <FaRegHeart />
             </button>
           )}
         </p>
-        <p>{!track.isLiked ? new Date(track?.added_at).toLocaleDateString() : ""}</p>
+        <p>
+          {!track.isLiked ? new Date(track?.added_at).toLocaleDateString() : ""}
+        </p>
       </div>
     </div>
   );

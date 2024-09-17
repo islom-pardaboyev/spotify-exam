@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../../hook/useAuth";
 import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import { CLIENT_ID } from "../../../hook/useEnv";
 import "./Home.css";
 import { TailSpin } from "react-loader-spinner";
-import { useNavigate } from "react-router-dom";
 import HeaderTop from "../../../components/HeaderTop";
 import StaticMusicCard from "../../../components/StaticMusicCard";
-import MusicCar from "../../../components/MusicCard";
 import MusicCard from "../../../components/MusicCard";
-import Playback from "../../../components/Playback";
 
 function Home({ accessToken }) {
-  const navigate = useNavigate();
   const [topMixesMusic, setTopMixesMusic] = useState([]);
   const [madeForYou, setMadeForYou] = useState([]);
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);

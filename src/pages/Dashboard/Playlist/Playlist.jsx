@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { addArray } from "../../../store/LikeSlice";
 import "./Playlist.css";
 import HeaderTop from "../../../components/HeaderTop";
 import { GoDotFill } from "react-icons/go";
@@ -21,7 +18,6 @@ import PlayListMusicCard from "../../../components/PlayListMusicCard";
 function Playlist() {
   const { id, token } = useParams();
   const [singlePlaylist, setSingePlaylist] = useState([]);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     axios(`https://api.spotify.com/v1/playlists/${id}`, {
@@ -53,7 +49,7 @@ function Playlist() {
             <p className="uppercase text-sm tracking-wider font-medium">
               Public Playlist
             </p>
-            <h1 className="text-6xl font-bold line-clamp-1 mt-2">
+            <h1 className="text-6xl font-bold w-full line-clamp-1 mt-2">
               {singlePlaylist?.name}
             </h1>
             <div className="flex items-center gap-2 mt-3">
@@ -62,10 +58,10 @@ function Playlist() {
                   {item?.track?.artists[0]?.name || "Unknown Artist"},
                 </span>
               ))}
-              <p>and more</p>
+              <p className="text-primary-5">and more</p>
             </div>
             <div className="flex items-center text-gray-400 mt-2">
-              Made for{" "}
+              Made for
               <span className="text-white font-medium ml-1">
                 {singlePlaylist?.owner?.display_name}
               </span>
