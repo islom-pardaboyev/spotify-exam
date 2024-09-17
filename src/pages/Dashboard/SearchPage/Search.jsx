@@ -98,7 +98,7 @@ function Search({ accessToken }) {
               tracks.map((track, index) => (
                 <div
                   onClick={() => {
-                    setPlay(track?.track?.uri);
+                    setPlay(track?.uri);
                     setPlaying(true);
                   }}
                   key={track.id}

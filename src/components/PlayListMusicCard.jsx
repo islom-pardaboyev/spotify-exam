@@ -5,17 +5,25 @@ import { useDispatch } from "react-redux";
 import { Context } from "../context/Context";
 
 function PlayListMusicCard({ index, track }) {
+  function formatDuration(durationMs) {
+    const seconds = Math.floor(durationMs / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    const formattedSeconds =
+      remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+    return `${minutes}:${formattedSeconds}`;
+  }
+
   const [liked, setLiked] = useState(
     JSON.parse(window.localStorage.getItem(`likedState-${track?.track?.id}`)) ||
       false
   );
   const dispatch = useDispatch();
-  const { setPlay, setPlaying, play, playing } = useContext(Context);
+  const { setPlay, setPlaying } = useContext(Context);
 
   const handleLike = () => {
-    const newLikedState = true;
-    setLiked(newLikedState);
-    dispatch(addArray(track));
+    setLiked(true);
+    dispatch(addArray(track)); 
   };
 
   useEffect(() => {
@@ -26,53 +34,61 @@ function PlayListMusicCard({ index, track }) {
   }, [liked, track]);
 
   return (
-    <div
-      onClick={() => {
-        setPlaying(true);
-        setPlay(track?.track?.uri);
-      }}
-      key={index}
-      className="grid grid-cols-12 gap-4 items-center hover:bg-gray-800 p-2 rounded-lg"
-    >
-      <div className="flex items-center gap-4 col-span-5">
-        <p className="text-gray-400">{index + 1}</p>
-        <div className="flex items-center gap-3">
-          <img
-            className="w-10 h-10 rounded-md"
-            src={
-              track?.track?.album?.images[0]?.url ||
-              "https://placehold.co/40x40?text=No+Image"
-            }
-            alt="Album cover"
-          />
-          <div>
-            <p className="line-clamp-1">{track?.track?.name}</p>
-            <p className="text-xs text-gray-400 line-clamp-1">
-              {track?.track?.artists.map((artist) => artist.name).join(", ")}
-            </p>
-          </div>
-        </div>
-      </div>
-      <p className="line-clamp-2 col-span-4 text-primary-5">
-        {track?.track?.album?.name}
+<div
+  className="grid grid-cols-12 gap-4 items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition duration-200"
+  key={index}
+  onClick={() => {
+    setPlaying(true);
+    setPlay(track?.track?.uri);
+  }}
+>
+  <div className="col-span-5 flex items-center gap-4">
+    <p className="text-gray-400">{index + 1}</p>
+    <img
+      className="w-12 h-12 rounded-md"
+      src={
+        track?.track?.album?.images[0]?.url ||
+        "https://placehold.co/40x40?text=No+Image"
+      }
+      alt="Album cover"
+    />
+    <div className="flex flex-col">
+      <p className="text-white font-medium line-clamp-1">
+        {track?.track?.name}
       </p>
-      <div className="flex items-center">
-        <p onClick={handleLike}>
-          {liked ? (
-            <button className="text-green-500 mr-2">
-              <FaHeart />
-            </button>
-          ) : (
-            <button className="mr-2">
-              <FaRegHeart />
-            </button>
-          )}
-        </p>
-        <p>
-          {!track.isLiked ? new Date(track?.added_at).toLocaleDateString() : ""}
-        </p>
-      </div>
+      <p className="text-gray-400 text-sm line-clamp-1">
+        {track?.track?.artists.map((artist) => artist.name).join(", ")}
+      </p>
     </div>
+  </div>
+
+  <p className="col-span-3 text-primary-5 truncate">
+    {track?.track?.album?.name}
+  </p>
+
+  <div className="col-span-2 text-gray-400 text-sm">
+    {formatDuration(track?.track?.duration_ms)}
+  </div>
+
+  <div
+    className="col-span-1 flex justify-end"
+    onClick={(e) => {
+      e.stopPropagation(); 
+      handleLike();
+    }}
+  >
+    {liked ? (
+      <button className="text-green-500 transition-transform transform hover:scale-110">
+        <FaHeart size={18} />
+      </button>
+    ) : (
+      <button className="text-gray-400 hover:text-white transition-colors">
+        <FaRegHeart size={18} />
+      </button>
+    )}
+  </div>
+</div>
+
   );
 }
 

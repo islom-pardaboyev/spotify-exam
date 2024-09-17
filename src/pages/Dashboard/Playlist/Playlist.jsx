@@ -88,13 +88,16 @@ function Playlist() {
         </div>
 
         <div className="mt-8">
-          <div className="grid grid-cols-12 gap-4 border-b border-gray-600 pb-2 text-sm text-gray-400 uppercase">
+          <div className="grid grid-cols-12 gap-4 border-b border-gray-600 pb-3 text-xs text-gray-400 uppercase tracking-wide">
             <div className="flex gap-4 items-center col-span-5">
-              <p className="min-w-[24px]">#</p>
-              <p>Title</p>
+              <p className="min-w-[24px] text-center">#</p>
+              <p className="text-sm">Title</p>
             </div>
-            <p className="col-span-4">Album</p>
-            <ClockIcon />
+            <p className="col-span-2 text-sm">Album</p>
+            <div className="flex items-center justify-end col-span-2">
+              <ClockIcon className="w-5 h-5 text-gray-400" />
+            </div>
+            <div className="col-span-2 text-right">Action</div>
           </div>
 
           <div className="flex flex-col mt-4">
