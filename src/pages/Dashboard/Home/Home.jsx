@@ -14,7 +14,6 @@ import Playback from "../../../components/Playback";
 
 function Home({ accessToken }) {
   const navigate = useNavigate();
-  // const accessToken = useAuth(code);
   const [topMixesMusic, setTopMixesMusic] = useState([]);
   const [madeForYou, setMadeForYou] = useState([]);
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
@@ -289,7 +288,6 @@ function Home({ accessToken }) {
           </div>
         </div>
       </div>
-      <Playback accessToken={accessToken}/>
     </section>
   );
 }

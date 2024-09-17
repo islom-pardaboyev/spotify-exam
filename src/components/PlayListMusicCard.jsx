@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import { LikeButton } from "../assets/images/Icons";
 import { addArray } from "../store/LikeSlice";
 import { useDispatch } from "react-redux";
 
 function PlayListMusicCard({ index, track }) {
+  const [liked, setLiked] = useState(JSON.parse(window.localStorage.getItem(`likedState-${track?.track?.id}`)) || false);
   const dispatch = useDispatch();
 
   const handleLike = () => {
+    const newLikedState = true;
+    setLiked(newLikedState);
     dispatch(addArray(track));
   };
+
+  useEffect(() => {
+    window.localStorage.setItem(`likedState-${track?.track?.id}`, JSON.stringify(liked));
+  }, [liked, track]);
 
   return (
     <div
@@ -38,8 +45,8 @@ function PlayListMusicCard({ index, track }) {
       <p className="line-clamp-2 col-span-4 text-primary-5">{track?.track?.album?.name}</p>
       <div className="flex items-center">
         <p onClick={handleLike}>
-          {track.isLiked === true ? (
-            <button className="text-green-500">
+          {liked ? (
+            <button className="text-green-500 mr-2">
               <FaHeart />
             </button>
           ) : (

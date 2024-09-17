@@ -15,6 +15,7 @@ import {
   SearchIcon,
 } from "../../../assets/images/Icons";
 import PlayListMusicCard from "../../../components/PlayListMusicCard";
+import LikedPLaylistCard from "../../../components/LikedPlaylistCard";
 
 function LikedList() {
   const likedArray = useSelector((state) => state.likedArray);
@@ -72,7 +73,7 @@ function LikedList() {
           </div>
 
           <div className="flex flex-col mt-4">
-            {likedArray.map((track, index) => <PlayListMusicCard track={track} index={index} key={track.track.id}/>)}
+            {likedArray.map((track, index) => <LikedPLaylistCard track={track} index={index} key={track.track.id}/>)}
           </div>
         </div>
       </main>

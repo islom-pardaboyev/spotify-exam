@@ -6,6 +6,7 @@ import Navbar from "../../layout/Navbar";
 import Panel from "../../layout/Panel";
 import {CLIENT_ID} from "../../hook/useEnv"
 import { useAuth } from "../../hook/useAuth";
+import Playback from "../../components/Playback";
 
 function DashboardRoutes({ code }) {
   const spotifyApi = new SpotifyWebApi({
@@ -26,6 +27,7 @@ function DashboardRoutes({ code }) {
           <Route path="/liked-songs" element={<LikedSongs />} />
           <Route path="/playlist/:id/:token" element={<Playlist />} />
         </Routes>
+       <Playback accessToken={accessToken}/>
       </main>
       <Panel />
     </div>
