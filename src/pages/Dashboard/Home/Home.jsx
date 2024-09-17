@@ -115,7 +115,7 @@ function Home({ accessToken }) {
               }
               className="uppercase hover:underline text-base tracking-[8%] leading-[20.24px] font-bold text-primary-5 cursor-pointer"
             >
-              see all
+              {musicCount == 4 ? 'see all' : 'show less'}
             </p>
           </div>
           <div className="grid grid-cols-12 relative gap-[31px]">
@@ -152,7 +152,7 @@ function Home({ accessToken }) {
               }
               className="uppercase hover:underline text-base tracking-[8%] leading-[20.24px] font-bold text-primary-5 cursor-pointer"
             >
-              see all
+              {musicForYouCount == 4 ? "see all" : "show less"}
             </p>
           </div>
           <div className="grid grid-cols-12 relative gap-[31px]">
@@ -189,7 +189,7 @@ function Home({ accessToken }) {
               }
               className="uppercase hover:underline text-base tracking-[8%] leading-[20.24px] font-bold text-primary-5 cursor-pointer"
             >
-              see all
+              {recentlyCount == 4 ? "seel all" : "show less"}
             </p>
           </div>
           <div className="grid grid-cols-12 relative gap-[31px]">
@@ -226,7 +226,7 @@ function Home({ accessToken }) {
               }
               className="uppercase hover:underline text-base tracking-[8%] leading-[20.24px] font-bold text-primary-5 cursor-pointer"
             >
-              see all
+              {uniquelyYoursCount == 4 ? 'see all' : 'show less'}
             </p>
           </div>
           <div className="grid grid-cols-12 relative gap-[31px]">
@@ -263,7 +263,7 @@ function Home({ accessToken }) {
               }
               className="uppercase hover:underline text-base tracking-[8%] leading-[20.24px] font-bold text-primary-5 cursor-pointer"
             >
-              see all
+              {jumpBackCount == 4 ? 'see all' : 'show less'}
             </p>
           </div>
           <div className="grid grid-cols-12 relative gap-[31px]">

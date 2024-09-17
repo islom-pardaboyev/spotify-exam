@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-node";
 import { Home, LikedSongs, Playlist, Search } from "../../pages/Dashboard";
@@ -9,6 +9,8 @@ import { useAuth } from "../../hook/useAuth";
 import Playback from "../../components/Playback";
 
 function DashboardRoutes({ code }) {
+  const [play, setPlay] = useState()
+  const [playing, setPlaying] = useState(false)
   const spotifyApi = new SpotifyWebApi({
     clientId: CLIENT_ID,
   });
@@ -22,12 +24,12 @@ function DashboardRoutes({ code }) {
       <Navbar />
       <main className="col-span-8 h-screen overflow-y-auto">
         <Routes>
-          <Route path="/" element={<Home accessToken={accessToken} />} />
+          <Route path="/" element={<Home setPlay={setPlay} setPlaying={setPlaying} accessToken={accessToken} />} />
           <Route path="/search" element={<Search accessToken={accessToken}/>}/>
           <Route path="/liked-songs" element={<LikedSongs />} />
           <Route path="/playlist/:id/:token" element={<Playlist />} />
         </Routes>
-       <Playback accessToken={accessToken}/>
+       <Playback play={play} setPlaying={setPlaying} playing={playing} accessToken={accessToken}/>
       </main>
       <Panel />
     </div>

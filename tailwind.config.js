@@ -9,7 +9,8 @@ export default {
       colors: {
         primary: {
           DEFAULT: "#b3b3b3",
-          5: '#ADADAD'
+          5: '#ADADAD',
+          10: '#CCCCCC'
         },
       },
       backgroundImage: {
