@@ -12,10 +12,8 @@ function LikedPLaylistCard({ index, track }) {
         <div className="flex items-center gap-3">
           <img
             className="w-10 h-10 rounded-md"
-            src={
-              track?.track?.album?.images[0]?.url ||
-              "https://placehold.co/40x40?text=No+Image"
-            }
+            onError={(e) => e.currentTarget.src = "https://placehold.co/40x40?text=No+Image"}
+            src={track?.track?.album?.images[0]?.url}
             alt="Album cover"
           />
           <div>

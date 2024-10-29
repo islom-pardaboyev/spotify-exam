@@ -18,7 +18,7 @@ function DashboardRoutes({ code }) {
     spotifyApi.setAccessToken(accessToken);
   }, [accessToken]);
   return (
-    <div className="grid grid-cols-12">
+    <div className="grid grid-cols-12 ">
       <Navbar accessToken={accessToken} />
       <main className="col-span-8 h-screen overflow-y-auto">
         <Routes>

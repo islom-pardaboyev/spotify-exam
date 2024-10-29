@@ -3,7 +3,7 @@ import SpotifyWebPlayer from "react-spotify-web-playback";
 import { Context } from "../context/Context";
 
 function Playback({ accessToken }) {
-  const {playing, play, setPlaying} = useContext(Context)
+  const { playing, play, setPlaying } = useContext(Context);
 
   return (
     <SpotifyWebPlayer
