@@ -17,7 +17,7 @@ function LikedPLaylistCard({ index, track }) {
             alt="Album cover"
           />
           <div>
-            <p className="">{track?.track?.name}</p>
+            <p>{track?.track?.name}</p>
             <p className="text-xs text-gray-400">
               {track?.track?.artists.map((artist) => artist.name).join(", ")}
             </p>
